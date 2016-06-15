@@ -30,3 +30,7 @@ server {
         auth_basic_user_file conf.d/htpassword;
     }
   }
+
+
+
+最后重启nginx
