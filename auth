@@ -1,0 +1,32 @@
+vim pw.pl
+#!/usr/bin/perl
+use strict;  
+my $pw=$ARGV[0];  
+print crypt($pw,$pw)."\n";
+
+
+chmod +x pw.pl
+./pw.pl 123456
+
+
+vim htpassword
+root:生成的密文
+
+
+在cookie.conf文件中添加
+server {
+    listen       80;
+    server_name  www.cookie.com;
+
+    #charset koi8-r;
+    access_log  /var/log/nginx/log/host.access.log  main;
+    error_log  /var/log/nginx/log/cookie.error.log;
+    
+    root   /home/www/cookie.com;
+    index index.html; 
+   
+    location / {
+        auth_basic "root";
+        auth_basic_user_file conf.d/htpassword;
+    }
+  }
